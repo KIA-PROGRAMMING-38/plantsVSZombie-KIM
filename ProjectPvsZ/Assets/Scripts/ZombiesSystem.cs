@@ -5,7 +5,5 @@ using UnityEngine;
 public abstract class ZombiesSystem : CharacterSystem
 {
     protected float speed; // 좀비 걷는 속도
-
-    protected abstract void Attack();
    
 }
