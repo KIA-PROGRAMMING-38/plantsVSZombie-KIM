@@ -33,7 +33,18 @@ public class peaShooter : PlantsSystem
         // 체력
         hp = 6;
     }
-    public bool AttackTrigger = false;
+
+    private bool _attackTrigger;
+    public bool AttackTrigger
+    {
+        get => _attackTrigger;
+        set
+        {
+            _attackTrigger = value;
+            if (false == _attackTrigger)
+                _elapsedTime = 0f;
+        }
+    }
     private void Update()
     {
         if (AttackTrigger == true)
@@ -44,10 +55,6 @@ public class peaShooter : PlantsSystem
                 Behaviour();
                 _elapsedTime = 0f;
             }
-        }
-        else
-        {
-            _elapsedTime = 0f;
         }
 
         if(hp <= 0)
@@ -60,7 +67,7 @@ public class peaShooter : PlantsSystem
     public void peaShooterAttack()
     {
         var bullet = _Pool.Get();
-        //bullet.SetAttackPower(amount);
+        bullet.SetAttackPower(amount);
         bullet.transform.position = _spwanPosition.position;
     }
     // 총알 오브젝트를 생성할 때 호출될 함수인 CreateBullet 함수를 만든다.

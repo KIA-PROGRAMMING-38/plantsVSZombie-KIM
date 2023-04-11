@@ -9,19 +9,20 @@ public class peaShooterRange : MonoBehaviour
 
     private void Awake()
     {
-        peaShooter = GetComponentInParent<peaShooter>(); 
+        peaShooter = GetComponentInParent<peaShooter>();
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (other.CompareTag("Zombie"))
+        if (collision.CompareTag("Zombie"))
         {
-            if(peaShooter.AttackTrigger == false)
-                peaShooter.AttackTrigger = true;
+            peaShooter.AttackTrigger = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (peaShooter.AttackTrigger == true)
+        if (collision.CompareTag("Zombie"))
+        {
             peaShooter.AttackTrigger = false;
+        }
     }
 }

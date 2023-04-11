@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rigidbody2d;
     Animator animator;
 
+    private GameObject Zombie;
+
     // 총알 오브젝트를 관리 중인 풀을 캐싱할 _ManagedPool 멤버 변수를 선언한다.
     private IObjectPool<Bullet> _ManagedPool;
 
@@ -33,9 +35,9 @@ public class Bullet : MonoBehaviour
     }
 
     // 충돌처리
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (gameObject.CompareTag("Zombie"))
+        if (collision.gameObject.CompareTag("Zombie"))
         {
             animator.SetTrigger("Zombie Touch");
             Invoke("DestroyBullet", 0.5f);
