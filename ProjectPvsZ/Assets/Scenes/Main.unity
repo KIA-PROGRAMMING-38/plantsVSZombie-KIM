@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 1
-  m_RefResolutionX: 640
-  m_RefResolutionY: 360
+  m_RefResolutionX: 960
+  m_RefResolutionY: 540
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -469,8 +469,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67d23d75a9197c4881000de34252b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 6
   _BulletPrefab: {fileID: 6137151651870784252, guid: b0939a1042c2d61449210ce0bf1c1259, type: 3}
+  amount: 0
+  cooltime: 0
+  hp: 6
 --- !u!1 &1236715393
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323865532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 222, y: 71, z: 0}
+  m_LocalPosition: {x: 233, y: 70, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -649,8 +651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47aaa152d0e45e4da30cc585a43f68d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
   ZombieWalkspeed: 3
+  hp: 10
 --- !u!50 &1323865540
 Rigidbody2D:
   serializedVersion: 4

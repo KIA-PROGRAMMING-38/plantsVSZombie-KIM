@@ -7,9 +7,8 @@ public class Zombie : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
     Animator animator;
-    peaShooter peaShooter;
     [Range(1f, 50f)]
-    [SerializeField] private float ZombieWalkspeed = 3f;
+    [SerializeField] private float ZombieWalkspeed = 15f;
     private bool canWalk, canAttack;
     [Range(1, 20)]
     [SerializeField]private int hp;
@@ -24,7 +23,6 @@ public class Zombie : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        peaShooter = GetComponent<peaShooter>();
     }
 
     private void Start()
@@ -38,12 +36,7 @@ public class Zombie : MonoBehaviour
     private void Update()
     {
         CheckPlant();
-        CheckDeath();
-
-        if(hp <= 0)
-        {
-            Destroy(gameObject);
-        }
+        CheckHealth();
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -61,18 +54,27 @@ public class Zombie : MonoBehaviour
     }
 
     // 좀비 죽음 확인
-    void CheckDeath()
+    void CheckHealth()
     {
+
+        if (hp <= 2)
+        {
+            animator.SetInteger("Zombie Health", 2);
+            canAttack = false;
+        }
+
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            animator.SetInteger("Zombie Health", 0);
+            canWalk = false;
+            Invoke("ZombieDeath", 1.1f);
         }
     }
 
     // 식물 감지
     void CheckPlant()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.right, 0.3f, LayerMask.GetMask("Plants"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 0.3f, LayerMask.GetMask("Plants"));
         if (hit.collider != null)
         {
             animator.SetBool("Zombie Attack", true);
@@ -89,9 +91,6 @@ public class Zombie : MonoBehaviour
             canWalk = true;
         }
     }
-
-   
-
     // 코루틴
     IEnumerator Eating(Collider2D collider)
     {
@@ -111,5 +110,10 @@ public class Zombie : MonoBehaviour
         {
             hp--;
         }
+    }
+    
+    void ZombieDeath()
+    {
+        Destroy(gameObject);
     }
 }
