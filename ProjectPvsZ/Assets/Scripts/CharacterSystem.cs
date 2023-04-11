@@ -10,7 +10,7 @@ public abstract class CharacterSystem : MonoBehaviour
     protected int amount; // 공격력 혹은 에너지 자원양
     protected float cooltime; // 공격 쿨타임
     protected float range; // 공격, 방어등 범위
-    protected int hp; // 체력
+    public int hp; // 체력
 
     // 코드의 결합도를 낮추고, 유연성을 높이기 위한 도전으로 protected를 사용해본다.
     protected abstract void Behaviour();

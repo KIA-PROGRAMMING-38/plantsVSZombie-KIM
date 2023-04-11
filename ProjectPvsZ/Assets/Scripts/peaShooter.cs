@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class peaShooter : PlantsSystem
+public class peaShooter : MonoBehaviour
 {
     [SerializeField]
     private GameObject _BulletPrefab;
@@ -14,6 +14,13 @@ public class peaShooter : PlantsSystem
     private IObjectPool<Bullet> _Pool;
 
     private float _elapsedTime;
+
+    [Range(1, 5)]
+    [SerializeField] private int amount;
+    [Range(1f, 10f)]
+    [SerializeField]private float cooltime;
+    [Range(1, 10)]
+    public int hp;
 
     // Awake 함수에서 _Pool 멤버 변수에 Object Pool을 생성해서 넣어준다.
     private void Awake()
@@ -45,6 +52,7 @@ public class peaShooter : PlantsSystem
                 _elapsedTime = 0f;
         }
     }
+
     private void Update()
     {
         if (AttackTrigger == true)
@@ -52,14 +60,14 @@ public class peaShooter : PlantsSystem
             _elapsedTime += Time.deltaTime;
             if (_elapsedTime > cooltime)
             {
-                Behaviour();
+                peaShooterAttack();
                 _elapsedTime = 0f;
             }
         }
 
         if(hp <= 0)
         {
-            Die();
+            Destroy(gameObject);
         }
 
     }
@@ -96,19 +104,5 @@ public class peaShooter : PlantsSystem
     {
         Destroy(bullet.gameObject);
     }
-
-    // 행위
-    protected override void Behaviour()
-    {
-        // 좀비가 범위에 들어오면 공격 상태
-        peaShooterAttack();
-    }
-
-    // 죽음
-    protected override void Die()
-    {
-        Destroy(gameObject);
-    }
-
 
 }
