@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6137151651870784250}
   m_Layer: 6
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 6137151651870784252}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8d2a820ed6f3c634c9cc10b6721ce8fa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 092b31ce73226ea48830582288e48df6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
